@@ -3,7 +3,8 @@
             [advent-2020.io :as io]
             [advent-2020.problems.one :as one]
             [advent-2020.problems.two :as two]
-            [advent-2020.problems.three :as three])
+            [advent-2020.problems.three :as three]
+            [advent-2020.problems.four :as four])
   (:gen-class))
 
 (defn- problem-1
@@ -25,6 +26,10 @@
         data (io/parse-str text)]
     (three/solve data pairs)))
 
+(defn- problem-4
+  [ns]
+  (let [data (slurp "resources/4.txt")]
+    (four/solve data ns)))
 
 (defn -main
   "I solve the problems of the world to save Christmas"
@@ -34,4 +39,6 @@
   (println "Problem two (a): " (problem-2 two/valid-a?))
   (println "Problem two (b): " (problem-2 two/valid-b?))
   (println "Problem three (a): " (problem-3 [[3 1]]))
-  (println "Problem three (b): " (problem-3 [[1 1] [3 1] [5 1] [7 1] [1 2]])))
+  (println "Problem three (b): " (problem-3 [[1 1] [3 1] [5 1] [7 1] [1 2]]))
+  (println "Problem four (a): " (problem-4 "relaxed"))
+  (println "Problem four (b): " (problem-4 "strict")))
