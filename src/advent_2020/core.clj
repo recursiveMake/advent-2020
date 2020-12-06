@@ -1,11 +1,13 @@
 (ns advent-2020.core
-  (:require [clojure.tools.cli :refer [parse-opts]]
+  (:require [clojure.set :as set]
+            [clojure.tools.cli :refer [parse-opts]]
             [advent-2020.io :as io]
             [advent-2020.problems.one :as one]
             [advent-2020.problems.two :as two]
             [advent-2020.problems.three :as three]
             [advent-2020.problems.four :as four]
-            [advent-2020.problems.five :as five])
+            [advent-2020.problems.five :as five]
+            [advent-2020.problems.six :as six])
   (:gen-class))
 
 (defn- problem-1
@@ -38,6 +40,11 @@
         data (io/parse-str text)]
     (f data)))
 
+(defn- problem-6
+  [merger]
+  (let [data (slurp "resources/6.txt")]
+    (six/solve data merger)))
+
 (defn -main
   "I solve the problems of the world to save Christmas"
   [& args]
@@ -50,4 +57,6 @@
   (println "Problem four (a): " (problem-4 "relaxed"))
   (println "Problem four (b): " (problem-4 "strict"))
   (println "Problem five (a): " (problem-5 five/solve))
-  (println "Problem five (b): " (problem-5 five/solve-b)))
+  (println "Problem five (b): " (problem-5 five/solve-b))
+  (println "Problem six (a): " (problem-6 set/union))
+  (println "Problem six (b): " (problem-6 set/intersection)))
