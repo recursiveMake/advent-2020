@@ -54,7 +54,12 @@
   (reduce-kv (fn [m k v] 
                (assoc m k (f v))) (empty m) m))
 
-(defn- can-contain
+(defn- update-bags
+  "Multiply contained bags by n bags in map"
+  [bag-map n]
+  (update-map bag-map #(* n %)))
+
+(defn can-contain
   [rules type]
   (let [rules-set (to-map-set rules)
         i-rules   (invert-map-of-sets rules-set)]
@@ -65,15 +70,10 @@
             all-containers  (reduce set/union contain-sets)
             new-containers  (set/difference all-containers containers)]
         (if (empty? new-containers)
-          containers
+          (count containers)
           (recur (set/union containers new-containers) new-containers))))))
 
-(defn- update-bags
-  "Multiply contained bags by n bags in map"
-  [bag-map n]
-  (update-map bag-map #(* n %)))
-
-(defn- contains
+(defn contains
   [rules type]
   (loop [m    {type 1}
          total 0]
@@ -86,14 +86,7 @@
         (recur m* t')))))
 
 (defn solve
-  [data]
+  [data func]
   (-> data
       (parse-rules)
-      (can-contain :shiny-gold)
-      (count)))
-
-(defn solve-2
-  [data]
-  (-> data
-      (parse-rules)
-      (contains :shiny-gold)))
+      (func :shiny-gold)))

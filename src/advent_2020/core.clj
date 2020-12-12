@@ -50,6 +50,7 @@
   [f]
   (let [text (slurp "resources/7.txt")
         data (io/parse-str text)]
+    (seven/solve data f)))
     (f data)))
 
 (defn -main
@@ -67,5 +68,5 @@
   (println "Problem five (b): " (problem-5 five/solve-b))
   (println "Problem six (a): " (problem-6 set/union))
   (println "Problem six (b): " (problem-6 set/intersection))
-  (println "Problem seven (a): " (problem-7 seven/solve))
-  (println "Problem seven (b): " (problem-7 seven/solve-2)))
+  (println "Problem seven (a): " (problem-7 seven/can-contain))
+  (println "Problem seven (b): " (problem-7 seven/contains))
