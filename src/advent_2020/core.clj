@@ -7,7 +7,8 @@
             [advent-2020.problems.three :as three]
             [advent-2020.problems.four :as four]
             [advent-2020.problems.five :as five]
-            [advent-2020.problems.six :as six])
+            [advent-2020.problems.six :as six]
+            [advent-2020.problems.seven :as seven])
   (:gen-class))
 
 (defn- problem-1
@@ -45,6 +46,12 @@
   (let [data (slurp "resources/6.txt")]
     (six/solve data merger)))
 
+(defn- problem-7
+  [f]
+  (let [text (slurp "resources/7.txt")
+        data (io/parse-str text)]
+    (f data)))
+
 (defn -main
   "I solve the problems of the world to save Christmas"
   [& args]
@@ -59,4 +66,6 @@
   (println "Problem five (a): " (problem-5 five/solve))
   (println "Problem five (b): " (problem-5 five/solve-b))
   (println "Problem six (a): " (problem-6 set/union))
-  (println "Problem six (b): " (problem-6 set/intersection)))
+  (println "Problem six (b): " (problem-6 set/intersection))
+  (println "Problem seven (a): " (problem-7 seven/solve))
+  (println "Problem seven (b): " (problem-7 seven/solve-2)))
