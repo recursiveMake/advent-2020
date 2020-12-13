@@ -11,3 +11,8 @@
   [text]
   (let [words (parse-str text)]
     (map #(Integer. %) words)))
+
+(defn parse-long
+  [text]
+  (let [words (parse-str text)]
+    (map #(Long. %) words)))

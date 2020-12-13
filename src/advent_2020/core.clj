@@ -9,7 +9,8 @@
             [advent-2020.problems.five :as five]
             [advent-2020.problems.six :as six]
             [advent-2020.problems.seven :as seven]
-            [advent-2020.problems.eight :as eight])
+            [advent-2020.problems.eight :as eight]
+            [advent-2020.problems.nine :as nine])
   (:gen-class))
 
 (defn- problem-1
@@ -59,6 +60,18 @@
         data (io/parse-str text)]
     (f data)))
 
+(defn- problem-9
+  []
+  (let [text (slurp "resources/9.txt")
+        data (io/parse-long text)]
+    (nine/solve data 25)))
+
+(defn- problem-9-b
+  []
+  (let [text (slurp "resources/9.txt")
+        data (io/parse-long text)]
+    (nine/solve-2 data 1930745883)))
+
 (defn -main
   "I solve the problems of the world to save Christmas"
   [& args]
@@ -77,4 +90,6 @@
   (println "Problem seven (a): " (problem-7 seven/can-contain))
   (println "Problem seven (b): " (problem-7 seven/contains))
   (println "Problem eight (a): " (problem-8 eight/solve))
-  (println "Problem eight (b): " (problem-8 eight/solve-2)))
+  (println "Problem eight (b): " (problem-8 eight/solve-2))
+  (println "Problem nine (a): " (problem-9))
+  (println "Problem nine (b): " (problem-9-b)))
